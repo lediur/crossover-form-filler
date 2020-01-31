@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useQuery } from "react-query";
-import { useAsync, useDebounce } from "react-use";
+import { useAsync, useDebounce, useMeasure } from "react-use";
 import styles from "./PDFFiller.module.css";
 import { Container, Col, Row } from "react-bootstrap";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -125,6 +125,7 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
     zipCode: "",
   });
   const [pdfFields, setPdfFields] = useState<UserFields | null>(null);
+  const [ref, { width }] = useMeasure();
 
   useDebounce(
     () => {
@@ -184,117 +185,121 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
   };
 
   return (
-    <Container className={styles.page} fluid>
+    <Container className={styles.page} fluid ref={ref}>
       <Row>
         <Col md={4} className={styles.formContainer}>
-        <header>
-          <h1>Santa Clara Crossover Ballot Generator</h1>
-        </header>
-        <section>
           <header>
-            <p>
-              Fill out the information below. Your data will never leave your
+            <h1>Santa Clara Crossover Ballot Generator</h1>
+          </header>
+          <section>
+            <header>
+              <p>
+                Fill out the information below. Your data will never leave your
                 computer and is only used to fill out the crossover ballot
                 request form.
-            </p>
-          </header>
-          <form className={styles.form}>
-            <input
-              className={styles.input}
-              type="text"
-              onChange={handleChange("firstName")}
-              placeholder="First name"
-              autoComplete="given-name"
-              value={formInput.firstName}
-              required
-            ></input>
-            <input
-              className={styles.input}
-              type="text"
-              onChange={handleChange("middleName")}
-              placeholder="Middle name or initial"
-              autoComplete="additional-name"
-              value={formInput.middleName}
-            ></input>
-            <input
-              className={styles.input}
-              type="text"
-              onChange={handleChange("lastName")}
-              placeholder="Last name"
-              autoComplete="family-name"
-              value={formInput.lastName}
-              required
-            ></input>
-            <input
-              className={styles.input}
-              type="date"
-              onChange={handleDateOfBirthChange}
-              placeholder="Date of birth"
-              autoComplete="bday"
-              value={formInput.dateOfBirth}
-              required
-            ></input>
-            <input
-              className={styles.input}
-              type="text"
-              onChange={handleChange("streetAddress")}
-              placeholder="Street address"
-              autoComplete="street-address"
-              value={formInput.streetAddress}
-              required
-            ></input>
-            <input
-              className={styles.input}
-              type="text"
-              onChange={handleChange("city")}
-              placeholder="City"
-              autoComplete="address-level2"
-              value={formInput.city}
-              required
-            ></input>
-            <input
-              className={styles.input}
-              type="text"
-              onChange={handleChange("zipCode")}
-              placeholder="ZIP code"
-              autoComplete="postal-code"
-              value={formInput.zipCode}
-              required
-            ></input>
-            <input
-              className={styles.input}
-              type="tel"
-              onChange={handleChange("phone")}
-              placeholder="Phone"
-              autoComplete="tel"
-              value={formInput.phone}
-              required
-            ></input>
-            <p>
+              </p>
+            </header>
+            <form className={styles.form}>
+              <input
+                className={styles.input}
+                type="text"
+                onChange={handleChange("firstName")}
+                placeholder="First name"
+                autoComplete="given-name"
+                value={formInput.firstName}
+                required
+              ></input>
+              <input
+                className={styles.input}
+                type="text"
+                onChange={handleChange("middleName")}
+                placeholder="Middle name or initial"
+                autoComplete="additional-name"
+                value={formInput.middleName}
+              ></input>
+              <input
+                className={styles.input}
+                type="text"
+                onChange={handleChange("lastName")}
+                placeholder="Last name"
+                autoComplete="family-name"
+                value={formInput.lastName}
+                required
+              ></input>
+              <input
+                className={styles.input}
+                type="date"
+                onChange={handleDateOfBirthChange}
+                placeholder="Date of birth"
+                autoComplete="bday"
+                value={formInput.dateOfBirth}
+                required
+              ></input>
+              <input
+                className={styles.input}
+                type="text"
+                onChange={handleChange("streetAddress")}
+                placeholder="Street address"
+                autoComplete="street-address"
+                value={formInput.streetAddress}
+                required
+              ></input>
+              <input
+                className={styles.input}
+                type="text"
+                onChange={handleChange("city")}
+                placeholder="City"
+                autoComplete="address-level2"
+                value={formInput.city}
+                required
+              ></input>
+              <input
+                className={styles.input}
+                type="text"
+                onChange={handleChange("zipCode")}
+                placeholder="ZIP code"
+                autoComplete="postal-code"
+                value={formInput.zipCode}
+                required
+              ></input>
+              <input
+                className={styles.input}
+                type="tel"
+                onChange={handleChange("phone")}
+                placeholder="Phone"
+                autoComplete="tel"
+                value={formInput.phone}
+                required
+              ></input>
+              <p>
                 Check the document to the right and make sure your information
                 is correct.
-            </p>
-            <p>Then, download your form below.</p>
-            <input
-              type="submit"
-              className={styles.downloadButton}
-              value="Download form"
-              onClick={handleDownloadForm}
-              disabled={!isFormValid()}
-            />
-          </form>
-        </section>
+              </p>
+              <p>Then, download your form below.</p>
+              <input
+                type="submit"
+                className={styles.downloadButton}
+                value="Download form"
+                onClick={handleDownloadForm}
+                disabled={!isFormValid()}
+              />
+            </form>
+          </section>
         </Col>
         <Col className={styles.documentContainer}>
-        {renderedPDF != null && (
-          <Document
-            file={{ data: renderedPDF }}
-            className={styles.document}
-            loading={<LoadingDocument />}
-          >
-            <Page width={612} pageIndex={0} className={styles.page} />
-          </Document>
-        )}
+          {renderedPDF != null && (
+            <Document
+              file={{ data: renderedPDF }}
+              className={styles.document}
+              loading={<LoadingDocument />}
+            >
+              <Page
+                width={width > 750 ? Math.min((width * 2) / 3, 750) : width}
+                pageIndex={0}
+                className={styles.page}
+              />
+            </Document>
+          )}
         </Col>
       </Row>
     </Container>
