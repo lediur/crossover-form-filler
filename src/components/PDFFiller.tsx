@@ -12,6 +12,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import { useQuery } from "react-query";
 import { useAsync, useDebounce } from "react-use";
 import styles from "./PDFFiller.module.css";
+import { Container, Col, Row } from "react-bootstrap";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 type PDFTemplate = "ca-santa-clara";
@@ -183,8 +184,9 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
   };
 
   return (
-    <section className={styles.page}>
-      <section className={styles.formContainer}>
+    <Container className={styles.page} fluid>
+      <Row>
+        <Col md={4} className={styles.formContainer}>
         <header>
           <h1>Santa Clara Crossover Ballot Generator</h1>
         </header>
@@ -192,8 +194,8 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
           <header>
             <p>
               Fill out the information below. Your data will never leave your
-              computer and is only used to fill out the crossover ballot request
-              form.
+                computer and is only used to fill out the crossover ballot
+                request form.
             </p>
           </header>
           <form className={styles.form}>
@@ -269,8 +271,8 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
               required
             ></input>
             <p>
-              Check the document to the right and make sure your information is
-              correct.
+                Check the document to the right and make sure your information
+                is correct.
             </p>
             <p>Then, download your form below.</p>
             <input
@@ -282,8 +284,8 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
             />
           </form>
         </section>
-      </section>
-      <section className={styles.documentContainer}>
+        </Col>
+        <Col className={styles.documentContainer}>
         {renderedPDF != null && (
           <Document
             file={{ data: renderedPDF }}
@@ -293,8 +295,9 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
             <Page width={612} pageIndex={0} className={styles.page} />
           </Document>
         )}
-      </section>
-    </section>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
