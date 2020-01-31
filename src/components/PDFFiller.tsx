@@ -198,6 +198,7 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
           </header>
           <form className={styles.form}>
             <input
+              className={styles.input}
               type="text"
               onChange={handleChange("firstName")}
               placeholder="First name"
@@ -206,6 +207,7 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
               required
             ></input>
             <input
+              className={styles.input}
               type="text"
               onChange={handleChange("middleName")}
               placeholder="Middle name or initial"
@@ -213,6 +215,7 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
               value={formInput.middleName}
             ></input>
             <input
+              className={styles.input}
               type="text"
               onChange={handleChange("lastName")}
               placeholder="Last name"
@@ -221,6 +224,7 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
               required
             ></input>
             <input
+              className={styles.input}
               type="date"
               onChange={handleDateOfBirthChange}
               placeholder="Date of birth"
@@ -229,6 +233,7 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
               required
             ></input>
             <input
+              className={styles.input}
               type="text"
               onChange={handleChange("streetAddress")}
               placeholder="Street address"
@@ -237,6 +242,7 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
               required
             ></input>
             <input
+              className={styles.input}
               type="text"
               onChange={handleChange("city")}
               placeholder="City"
@@ -245,6 +251,7 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
               required
             ></input>
             <input
+              className={styles.input}
               type="text"
               onChange={handleChange("zipCode")}
               placeholder="ZIP code"
@@ -253,6 +260,7 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
               required
             ></input>
             <input
+              className={styles.input}
               type="tel"
               onChange={handleChange("phone")}
               placeholder="Phone"
@@ -282,7 +290,7 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
             className={styles.document}
             loading={<LoadingDocument />}
           >
-            <Page pageIndex={0} className={styles.page} />
+            <Page width={612} pageIndex={0} className={styles.page} />
           </Document>
         )}
       </section>
