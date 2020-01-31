@@ -1,5 +1,7 @@
 # Santa Clara County NPP Crossover Form Filler
 
+<center>![Screenshot of the tool, with the crossover form on the left and the document preview on the right](./docs/screenshot.png)</center>
+
 ## Background
 
 If a voter registered in California and declared "No Party Preference", they must request a crossover ballot in order to vote in the Democratic primary. The Santa Clara County Registrar of Voters requires voters to fill out a PDF form, physically sign it with ink, and submit the form via email, postal mail, fax, or hand delivery. Some of these fields aren't obvious, which makes filling out the form harder than it should be.
