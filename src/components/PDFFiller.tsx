@@ -172,6 +172,17 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
               setFields={setPdfFields}
             />
           </section>
+          <footer className={styles.footer}>
+            <div className={styles.fec}>
+              Labor donated, not paid for by any candidate or committee
+            </div>
+            <p>
+              by Derrick Liu |{" "}
+              <a href="https://github.com/lediur/crossover-form-filler">
+                GitHub
+              </a>
+            </p>
+          </footer>
         </Col>
         <Col className={styles.documentContainer}>
           {renderedPDF != null && (
