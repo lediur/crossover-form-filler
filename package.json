@@ -49,5 +49,8 @@
     "@types/lodash": "^4.14.149",
     "@types/react-pdf": "^4.0.3",
     "@types/react-query": "^0.3.7"
+  },
+  "resolutions": {
+    "@babel/core": "^7.7.7"
   }
 }
