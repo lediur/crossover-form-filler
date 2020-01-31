@@ -1,6 +1,6 @@
 # Santa Clara County NPP Crossover Form Filler
 
-<center>![Screenshot of the tool, with the crossover form on the left and the document preview on the right](./docs/screenshot.png)</center>
+![Screenshot of the tool, with the crossover form on the left and the document preview on the right](docs/screenshot.png)
 
 ## Background
 
