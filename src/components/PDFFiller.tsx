@@ -157,7 +157,7 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
       <Row className={styles.pageRow}>
         <Col md={4} className={styles.formContainer}>
           <header>
-            <h1>Santa Clara Crossover Ballot Generator</h1>
+            <h1>Santa Clara Crossover Ballot Form Helper</h1>
           </header>
           <section>
             <header>
