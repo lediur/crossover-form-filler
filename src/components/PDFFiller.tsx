@@ -187,8 +187,13 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
         </Modal.Header>
         <Modal.Body>
           <ol>
-            <li>Print out your filled out request form</li>
-            <li>Sign and date the form</li>
+            <li>
+              <strong>Print out</strong> your filled out request form. You may
+              need to use a computer instead of a phone to do this.
+            </li>
+            <li>
+              <strong>⚠ Sign and date the form</strong>
+            </li>
             <li>
               Either:{" "}
               <ul>
