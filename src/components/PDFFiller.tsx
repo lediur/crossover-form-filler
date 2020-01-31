@@ -12,7 +12,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import { useQuery } from "react-query";
 import { useAsync, useDebounce, useMeasure } from "react-use";
 import styles from "./PDFFiller.module.css";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Form } from "react-bootstrap";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 type PDFTemplate = "ca-santa-clara";
@@ -199,8 +199,8 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
                 request form.
               </p>
             </header>
-            <form className={styles.form}>
-              <input
+            <Form className={styles.form}>
+              <Form.Control
                 className={styles.input}
                 type="text"
                 onChange={handleChange("firstName")}
@@ -208,16 +208,16 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
                 autoComplete="given-name"
                 value={formInput.firstName}
                 required
-              ></input>
-              <input
+              />
+              <Form.Control
                 className={styles.input}
                 type="text"
                 onChange={handleChange("middleName")}
                 placeholder="Middle name or initial"
                 autoComplete="additional-name"
                 value={formInput.middleName}
-              ></input>
-              <input
+              />
+              <Form.Control
                 className={styles.input}
                 type="text"
                 onChange={handleChange("lastName")}
@@ -225,8 +225,8 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
                 autoComplete="family-name"
                 value={formInput.lastName}
                 required
-              ></input>
-              <input
+              />
+              <Form.Control
                 className={styles.input}
                 type="date"
                 onChange={handleDateOfBirthChange}
@@ -234,8 +234,8 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
                 autoComplete="bday"
                 value={formInput.dateOfBirth}
                 required
-              ></input>
-              <input
+              />
+              <Form.Control
                 className={styles.input}
                 type="text"
                 onChange={handleChange("streetAddress")}
@@ -243,8 +243,8 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
                 autoComplete="street-address"
                 value={formInput.streetAddress}
                 required
-              ></input>
-              <input
+              />
+              <Form.Control
                 className={styles.input}
                 type="text"
                 onChange={handleChange("city")}
@@ -252,8 +252,8 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
                 autoComplete="address-level2"
                 value={formInput.city}
                 required
-              ></input>
-              <input
+              />
+              <Form.Control
                 className={styles.input}
                 type="text"
                 onChange={handleChange("zipCode")}
@@ -261,8 +261,8 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
                 autoComplete="postal-code"
                 value={formInput.zipCode}
                 required
-              ></input>
-              <input
+              />
+              <Form.Control
                 className={styles.input}
                 type="tel"
                 onChange={handleChange("phone")}
@@ -270,23 +270,23 @@ const PDFFiller: React.FC<PDFFillerProps> = ({ template }) => {
                 autoComplete="tel"
                 value={formInput.phone}
                 required
-              ></input>
+              />
               <p>
                 Check the document to the right and make sure your information
                 is correct.
               </p>
               <p>Then, download your form below.</p>
-              <input
+              <Form.Control
                 type="submit"
                 className={styles.downloadButton}
                 value="Download form"
                 onClick={handleDownloadForm}
                 disabled={!isFormValid()}
               />
-            </form>
+            </Form>
           </section>
         </Col>
-        <Col className={styles.documentContainer}>
+        <Col md={8} className={styles.documentContainer}>
           {renderedPDF != null && (
             <Document
               file={{ data: renderedPDF }}
